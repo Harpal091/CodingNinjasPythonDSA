@@ -45,7 +45,37 @@ def deleteNode(head, pos):
 
     return head
 
+def ReverseLLIterative(head):
+    prev=None
+    curr=head
+    while curr is not None:
+        temp=curr.next
+        curr.next=prev
+        prev=curr
+        curr=temp
+
+    return prev
+
+def ReverseLLRecursive(head):
+    if head is None:
+        return None
+    if head.next is None:
+        return head
+    smallhead=ReverseLLIterative(head.next)
+    curr=smallhead
+    while curr is not None:
+        tail=curr
+        curr=curr.next
+    tail.next=head
+    head.next=None
+
+    return smallhead
+
 head=Input()
 printLL(head)
-head=deleteNode(head,2)
+head=ReverseLLIterative(head)
+printLL(head)
+head=ReverseLLRecursive(head)
+printLL(head)
+head=ReverseLLRecursive(head)
 printLL(head)
