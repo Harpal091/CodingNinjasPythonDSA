@@ -71,11 +71,32 @@ def ReverseLLRecursive(head):
 
     return smallhead
 
+
+def skipMdeleteN(head, M, N):
+    # Your code goes here
+    curr = head
+
+    while curr is not None:
+        take = 1
+        skip = 1
+        while take<M and curr is not None:
+            curr=curr.next
+            take+=1
+
+        if curr is None:
+            return
+        temp=curr.next
+
+        while skip<=N and temp is not None:
+            temp=temp.next
+            skip+=1
+
+        curr.next=temp
+        curr=temp
+    return head
+
+
 head=Input()
 printLL(head)
-head=ReverseLLIterative(head)
-printLL(head)
-head=ReverseLLRecursive(head)
-printLL(head)
-head=ReverseLLRecursive(head)
+head=skipMdeleteN(head,2,3)
 printLL(head)
